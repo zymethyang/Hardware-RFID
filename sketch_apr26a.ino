@@ -36,6 +36,7 @@ void setup() {
       delay(500);
       Serial.println("Đang chờ kết nối"); 
     }
+    pinMode(16, OUTPUT);
 }
 
 /**
@@ -96,7 +97,7 @@ void loop() {
         Serial.println(mfrc522.GetStatusCodeName(status));
     }
     
-    String item = String("http://192.168.1.115:5000/student/add/");
+    String item = String("http://backend-rfid.herokuapp.com/student/add/");
     for(int k=0; k<8; k++){
       item += String(buffer[k]);
     }
@@ -107,13 +108,20 @@ void loop() {
  
    http.begin(item);      //Chuẩn bị gửi dữ liệu
    http.addHeader("Content-Type", "text/plain");  //Specify content-type header
-  /*
+
    int httpCode = http.GET();
    String payload = http.getString();                  //Get the response payload
  
    Serial.println(httpCode);   //Print HTTP return code
    Serial.println(payload);    //Print request response payload
-   */
+
+   if(payload=="true"){
+      digitalWrite(16, HIGH);
+      delay(3000);
+      digitalWrite(16, LOW);
+    }
+   
+   
    // Halt PICC
    mfrc522.PICC_HaltA();
    // Stop encryption on PCD
