@@ -23,7 +23,7 @@ void setup() {
     // using FFFFFFFFFFFFh which is the default at chip delivery from the factory
     // Khai báo key A và key B
     for (byte i = 0; i < 6; i++) {
-        key.keyByte[i] = 0xFF;
+        key.keyByte[i] = 0x11;
     }
 
     Serial.println(F("Mời quét thẻ"));
@@ -130,7 +130,6 @@ void loop() {
 
 void dump_byte_array(byte *buffer, byte bufferSize) {
     for (byte i = 0; i < bufferSize; i++) {
-        Serial.print(buffer[i] < 0x10 ? " 0" : " ");
         Serial.print(buffer[i], HEX);
     }
 }
