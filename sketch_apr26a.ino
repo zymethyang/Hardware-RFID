@@ -70,9 +70,9 @@ void loop() {
     }
 
 
-    byte sector         = 1;
-    byte blockAddr      = 4;
-    byte trailerBlock   = 7;
+    byte sector         = 1; //Chọn sector 1
+    byte blockAddr      = 4; //Block chứa mã số sinh viên
+    byte trailerBlock   = 7; //Chứa key a key b....
     
     MFRC522::StatusCode status;
     byte buffer[18];
